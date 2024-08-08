@@ -1,0 +1,35 @@
+<Project>
+	<PropertyGroup>
+		<Authors>Linv2</Authors>
+		<Copyright>Copyright 2024 Linv2</Copyright>
+	</PropertyGroup>
+
+	<!-- Calculate the build and revision numbers based on the current date -->
+	<PropertyGroup>
+		<MajorVersion>0</MajorVersion>
+		<MinorVersion>0</MinorVersion>
+		<BuildDate>0</BuildDate>
+		<RevisionTime>1</RevisionTime>
+		<!--<MinorVersion>$([System.DateTime]::Now.ToString("yy"))</MinorVersion>-->
+		<!--<BuildDate>$([System.DateTime]::Now.ToString("MMdd"))</BuildDate>-->
+		<!--<RevisionTime>$([System.DateTime]::Now.ToString("HHmm"))</RevisionTime>-->
+		<BuildNumber>$(MajorVersion).$(MinorVersion).$(BuildDate).$(RevisionTime)</BuildNumber>
+	</PropertyGroup>
+	<!-- Use the calculated version for the NuGet package -->
+	<PropertyGroup>
+		<VersionPrefix>$(BuildNumber)</VersionPrefix>
+		<Version>$(VersionPrefix)</Version>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<!-- 设置 SolutionDir 属性为解决方案文件的绝对路径 -->
+		<SolutionDir>$(MSBuildThisFileDirectory)</SolutionDir>
+	</PropertyGroup>
+	<ItemGroup>
+		<!-- Nuget的自述文件 -->
+		<None Include="$(SolutionDir)README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+</Project>

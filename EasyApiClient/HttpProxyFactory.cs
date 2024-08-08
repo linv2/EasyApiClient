@@ -127,7 +127,7 @@ namespace EasyApiClient
             if (httpBehavior.HttpMethod != HttpHeaders.HttpMethod.Get)
             {
                 object payload = null;
-                var bodyParams = httpBehavior.HttpParameter.Where(x => x.IsRoute);
+                var bodyParams = httpBehavior.HttpParameter.Where(x => x.IsFormBody);
                 if (bodyParams.Count() == 1)
                 {
                     payload = args[bodyParams.ElementAt(0).ParamIndex];

@@ -5,10 +5,9 @@ name: Publish NuGet Package # Action名称
 # 触发本action
 on:
   push:
-    branches:
-      - main # 监听的分支
-    paths: # 监听的文件
-      - 'Directory.Build.props'
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 # 设置运行环境及执行步骤
 # 作用见step name
@@ -23,7 +22,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '6.x' # 修改为你的.NET版本
+          dotnet-version: '8.0' # 修改为你的.NET版本
 
       - name: Restore NuGet packages
         run: dotnet restore
